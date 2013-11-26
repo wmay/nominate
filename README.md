@@ -8,10 +8,10 @@ Requirements
 ------------
 
 * Linux
-* R
-    sudo apt-get install r-base r-base-dev
-* GFortran (only for DW-NOMINATE)
-    sudo apt-get install gfortran
+* R  
+In Ubuntu: sudo apt-get install r-base r-base-dev
+* GFortran (only for DW-NOMINATE)  
+In Ubuntu: sudo apt-get install gfortran
 
 
 Example
@@ -19,17 +19,24 @@ Example
 
 Let's say you have a file of voting data in the format
 
-> name|party|rollcall info|vote
-> name2|party2|rollcall info|vote
+> name1|party1|rollcall1 info|vote1  
+> name2|party2|rollcall1 info|vote2  
+> ...  
+> name1|party1|rollcall2 info|vote1  
+> name2|party2|rollcall2 info|vote2  
 > ...
 
-which is similar to what you can download from the New Hampshire state legislature, for example.
+which is similar to what you can download from the
+<a href="http://www.gencourt.state.nh.us/downloads/">New Hampshire state legislature</a>.
 And these are collected in file '1999NHrollcalls.csv' and so forth.
 
 The following code will read the rollcall data into WSession objects, and add them to a DWChamber object.
 chamber.dwnominate starts the nominate process, first calling wnominate on each WSession, then using the
 results to write the input files for the DW-NOMINATE program, and then running DW-NOMINATE. All results,
 including output graphs from the R wnominate package, will be stored in a folder called 'nominate'.
+
+An alternative is to call wnominate(prefix) on WSession objects, which will run only the W-NOMINATE program,
+giving each output file the specified prefix.
 
 
 
@@ -38,7 +45,7 @@ require 'nominate'
 
 chamber = DWChamber.new
 
-# votes other than Yes or No are counted as missing (M)
+# votes other than Yes or No are counted as missing ('M')
 vote_key = Hash.new('M')
 vote_key['Yes'] = 'Y'
 vote_key['No'] = 'N'

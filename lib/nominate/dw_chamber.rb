@@ -52,14 +52,20 @@ class DWChamber
 
   def check_ws(sessions)
     sessions.each_with_index do |session, i|
-      session_prefix = 'session_' + (i+1).to_s + '_'
-      if not Dir.entries(Dir.pwd).include?(session_prefix + 'legislators.csv')
-        Dir.chdir('..')
-        session.wnominate(session_prefix)
-        Dir.chdir('nominate')
+      if session.prefix == nil
+        session.prefix = 'session_' + (i+1).to_s + '_'
+        self.check_for_session(session)
       else
-        session.prefix = session_prefix
+        self.check_for_session(session)
       end
+    end
+  end
+
+  def check_for_session(session)
+    if not Dir.entries(Dir.pwd).include?(session.prefix + 'legislators.csv')
+      Dir.chdir('..')
+      session.wnominate(session.prefix)
+      Dir.chdir('nominate')
     end
   end
 

@@ -1,7 +1,7 @@
 if( require("wnominate") == FALSE ) {
   print("The R 'wnominate' package is not installed.")
-  print("Please follow the instructions to install wnominate.")
-  install.packages("wnominate", repos='http://cran.us.r-project.org')
+  print("Trying to install wnominate. (Requires sudo privileges.)")
+  install.packages("wnominate", repos='http://cran.rstudio.com/')
   if( require("wnominate") ) {
     print("wnominate is now installed.")
   } else {

@@ -4,13 +4,11 @@ class WSession
     @rollcalls = []
     # party is 'unknown' by default
     @parties = Hash.new('unknown')
-    @prefix = ''
     # variable for assigning each legislator a number, used for DW-NOMINATE
     @x = 1
   end
-  def get_legs
-    @legislators
-  end
+  attr_accessor :parties
+  attr_accessor :prefix
   def add_rollcall(rollcall_hash)
     @rollcalls.push rollcall_hash
     rollcall_hash.each_key do |name|
@@ -19,9 +17,6 @@ class WSession
         @x += 1
       end
     end
-  end
-  def add_party(leg, party)
-    @parties[leg] = party
   end
   def wnominate(file_prefix = 'wnom_')
     Dir.mkdir('nominate') unless Dir.exist?('nominate')
@@ -42,12 +37,6 @@ class WSession
       files.each { |file| File.rename(file, file_prefix + file) }
     end
     Dir.chdir('..')
-  end
-  def prefix
-    @prefix
-  end
-  def prefix=(prefix)
-    @prefix = prefix
   end
   def write_wnom(legislators, rollcalls, parties)
     final = []

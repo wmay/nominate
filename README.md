@@ -43,7 +43,7 @@ An alternative is to call <code>wnominate(prefix)</code> on WSession objects, wh
 <pre>
 require 'nominate'
 
-chamber = DWChamber.new
+chamber = Dwnominate.new
 
 # votes other than Yes or No are counted as missing ('M')
 vote_key = Hash.new('M')
@@ -54,7 +54,7 @@ vote_key['No'] = 'N'
   year = (year.to_i + 1).to_s
   file = year + 'NHrollcalls.csv'
   lines = IO.readlines(file)
-  session = WSession.new
+  session = Wnominate.new
   # default party is 'unknown'
   parties = Hash.new('unknown')
   old_issue = 0
@@ -79,7 +79,7 @@ vote_key['No'] = 'N'
   chamber.add_session(session)
 end
 
-chamber.dwnominate
+chamber.dwnominate(prefix = 'dw_')
 </pre>
 
 

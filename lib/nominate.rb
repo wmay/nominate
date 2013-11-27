@@ -13,5 +13,5 @@ R, with the 'wnominate' package
 
 =end
 
-require 'nominate/dw_chamber.rb'
-require 'nominate/w_session.rb'
+require 'nominate/dw_nominate.rb'
+require 'nominate/w_nominate.rb'

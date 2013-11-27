@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = <<EOF
     An interface to the W- and DW-NOMINATE political scaling programs, written
     by Keith Poole, Howard Rosenthal, and others. Map legislators along the
-    political spectrum using their rollcall votes."
+    political spectrum using their rollcall votes.
 EOF
   s.author      = 'Will May'
   s.email       = 'williamcmay@live.com'

@@ -3,15 +3,17 @@ nominate
 
 The 'nominate' gem, to run W- and DW-NOMINATE from Ruby
 
+W-NOMINATE uses rollcall votes to map legislators along a political spectrum. In American state and federal elections, it typically finds the traditional left-right spectrum. DW-NOMINATE uses legislators who have served in multiple legislative sessions to compare sessions and track changes through time.
+
 
 Requirements
 ------------
 
 * Linux
 * R  
-In Ubuntu: sudo apt-get install r-base r-base-dev
+In Ubuntu: <code>sudo apt-get install r-base r-base-dev</code>
 * GFortran (only for DW-NOMINATE)  
-In Ubuntu: sudo apt-get install gfortran
+In Ubuntu: <code>sudo apt-get install gfortran</code>
 
 
 Example
@@ -30,13 +32,11 @@ which is similar to what you can download from the
 <a href="http://www.gencourt.state.nh.us/downloads/">New Hampshire state legislature</a>.
 And these are collected in file '1999NHrollcalls.csv' and so forth.
 
-The following code will read the rollcall data into WSession objects, and add them to a DWChamber object.
-chamber.dwnominate starts the nominate process, first calling wnominate on each WSession, then using the
-results to write the input files for the DW-NOMINATE program, and then running DW-NOMINATE. All results,
-including output graphs from the R wnominate package, will be stored in a folder called 'nominate'.
+The following code will read the rollcall data into WSession objects, and add the sessions to a DWChamber object.
+<code>chamber.dwnominate</code> starts the nominate process, first calling <code>wnominate</code> on each WSession, then using the results to write the input files for the DW-NOMINATE program, and then running DW-NOMINATE. All results,
+including output graphs from the R wnominate package, will be written to a folder called 'nominate'.
 
-An alternative is to call wnominate(prefix) on WSession objects, which will run only the W-NOMINATE program,
-giving each output file the specified prefix.
+An alternative is to call <code>wnominate(prefix)</code> on WSession objects, which will run only the W-NOMINATE program, adding the specified prefix to each output file.
 
 
 
@@ -82,3 +82,12 @@ end
 chamber.dwnominate
 </pre>
 
+
+More Resources
+--------------
+
+* <a href="http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&cad=rja&ved=0CEoQFjAD&url=http%3A%2F%2Fwww.jstatsoft.org%2Fv42%2Fi14%2Fpaper&ei=EEaVUt2uJMnMsQStm4KwDA&usg=AFQjCNHZsPQw1NuuNqjmdgrTocQpcNgW2g&sig2=wyMhSL38AaMsDxYpwKm4yA&bvm=bv.57155469,d.cWc">Scaling Roll Call Votes with W-NOMINATE in R</a>
+* <a href="http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=0CCwQFjAA&url=http%3A%2F%2Fcran.r-project.org%2Fweb%2Fpackages%2Fwnominate%2Fwnominate.pdf&ei=EEaVUt2uJMnMsQStm4KwDA&usg=AFQjCNHmCcBCSbfZkZ8WQRlKsnVxOGSM9g&sig2=zRs0PR_OwBttMm4MBA6NDQ&bvm=bv.57155469,d.cWc&cad=rja">R wnominate package documentation</a>
+* <a href="http://voteview.com/dwnominate.asp">DW-NOMINATE at voteview.com</a> (with an explanation of the output format)
+* *Spatial Models of Parliamentary Voting*, by Keith Poole, an in-depth explanation of the programs
+* *Ideology and Congress*, by Keith Poole and Howard Rosenthal

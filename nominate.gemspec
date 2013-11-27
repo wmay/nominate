@@ -12,7 +12,7 @@ EOF
   s.email       = 'williamcmay@live.com'
   s.files       = ['lib/nominate.rb', 'lib/nominate/fixer.rb',
                    'lib/nominate/DW-NOMINATE.FOR', 'lib/nominate/nominate.R']
-  s.homepage    = ''
+  s.homepage    = 'https://github.com/wmay/nominate'
   s.license     = 'MIT'
   s.requirements << 'the R statistical programming language'
   s.requirements << 'GFortran'

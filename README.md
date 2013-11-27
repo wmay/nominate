@@ -32,11 +32,11 @@ which is similar to what you can download from the
 <a href="http://www.gencourt.state.nh.us/downloads/">New Hampshire state legislature</a>.
 And these are collected in file '1999NHrollcalls.csv' and so forth.
 
-The following code will read the rollcall data into WSession objects, and add the sessions to a DWChamber object.
-<code>chamber.dwnominate</code> starts the nominate process, first calling <code>wnominate</code> on each WSession, then using the results to write the input files for the DW-NOMINATE program, and then running DW-NOMINATE. All results,
+The following code will read the rollcall data into Wnominate objects, and add the sessions to a Dwnominate object.
+<code>chamber.dwnominate</code> starts the nominate process, first calling <code>wnominate</code> on each Wnominate, then using the results to write the input files for the DW-NOMINATE program, and then running DW-NOMINATE. All results,
 including output graphs from the R wnominate package, will be written to a folder called 'nominate'.
 
-An alternative is to call <code>wnominate(prefix)</code> on WSession objects, which will run only the W-NOMINATE program, adding the specified prefix to each output file.
+An alternative is to call <code>wnominate(prefix)</code> on Wnominate objects, which will run only the W-NOMINATE program, adding the specified prefix to each output file.
 
 
 

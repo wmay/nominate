@@ -5,6 +5,8 @@ The 'nominate' gem, to run W- and DW-NOMINATE from Ruby
 
 W-NOMINATE uses rollcall votes to map legislators along a political spectrum. In American state and federal elections, it typically finds the traditional left-right spectrum. DW-NOMINATE uses legislators who have served in multiple legislative sessions to compare sessions and track changes through time.
 
+Installation: <code>sudo gem install nominate</code>
+
 
 Requirements
 ------------

@@ -35,8 +35,7 @@ which is similar to what you can download from the
 And these are collected in file '1999NHrollcalls.csv' and so forth.
 
 The following code will read the rollcall data into Wnominate objects, and add the sessions to a Dwnominate object.
-<code>chamber.dwnominate</code> starts the nominate process, first calling <code>wnominate</code> on each Wnominate, then using the results to write the input files for the DW-NOMINATE program, and then running DW-NOMINATE. All results,
-including output graphs from the R wnominate package, will be written to a folder called 'nominate'.
+<code>chamber.dwnominate</code> starts the nominate process, first calling <code>wnominate</code> on each Wnominate object, then using the results to write the input files for the DW-NOMINATE program, and then running DW-NOMINATE. All results, including output graphs from the R wnominate package, will be written to a folder called 'nominate'.
 
 An alternative is to call <code>wnominate(prefix)</code> on Wnominate objects, which will run only the W-NOMINATE program, adding the specified prefix to each output file.
 
@@ -51,9 +50,9 @@ chamber = Dwnominate.new
 vote_key = Hash.new('M')
 vote_key['Yes'] = 'Y'
 vote_key['No'] = 'N'
+# Wnominate object only accepts 'Y', 'N', and 'M' votes
 
 ['1999', '2001', '2003', '2005', '2007'].each do |year|
-  year = (year.to_i + 1).to_s
   file = year + 'NHrollcalls.csv'
   lines = IO.readlines(file)
   session = Wnominate.new
@@ -65,18 +64,22 @@ vote_key['No'] = 'N'
   lines.each_with_index do |line, i|
     data = line.split('|')
     name = data[0]
+    party = data[1]
     issue = data[2]
     vote = vote_key[data[3].chomp]
+    # every time we get to a new rollcall, add the hash with the old rollcall's votes to the
+    # Wnominate object, and start a new rollcall hash.
     if issue != old_issue
       session.add_rollcall(rollcall) unless i == 0
       rollcall = Hash.new('M')
       old_issue = issue
     end
     rollcall[name] = vote
-    parties[name] = data[1] if not parties.has_key?(name)
+    parties[name] = party if not parties.has_key?(name)
     # get the last rollcall when you reach the end of the file
     session.add_rollcall(rollcall) if i == lines.length - 1
   end
+  # add a hash of legislator names and parties if you want party info to be included
   session.parties = parties
   chamber.add_session(session)
 end
